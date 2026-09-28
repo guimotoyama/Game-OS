@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game OS</title>
+  <link rel="icon" type="image/png" href="imagens/favicon.png">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="login-screen" class="login-screen">
+    <div class="login-box">
+      <img src="imagens/logo.svg" alt="Logo" class="login-logo">
+      <h1>GLM Games Dashboard</h1>
+      <input type="email" id="login-email" placeholder="E-mail">
+      <input type="password" id="login-password" placeholder="Senha">
+      <button id="login-btn">Entrar</button>
+      <p id="login-error" class="login-error"></p>
+    </div>
+  </div>
+
+  <div id="app" class="app-hidden">
+
+  <header class="main-header">
+    <div class="logo">
+      <img src="imagens/logo.svg" alt="Logo Game OS" class="logo-img">
+      <span>GLM Games Dashboard</span>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Buscar jogo...">
+      <button id="search-clear" class="search-clear" title="Limpar">×</button>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </header>
+
+  <nav class="filters">
+    <button class="filter-btn active" data-status="all">Todos</button>
+    <button class="filter-btn" data-status="playing">🎮 Jogando</button>
+    <button class="filter-btn" data-status="completed">🏆 Zerado</button>
+    <button class="filter-btn" data-status="planned">📅 Planejado</button>
+    <button class="filter-btn" data-status="dropped">🚫 Abandonado</button>
+  </nav>
+
+  <main id="games-grid" class="games-grid">
+    <p class="placeholder-msg">Em breve: seus jogos vão aparecer aqui.</p>
+  </main>
+
+  </div>
+
+  <div id="add-modal" class="modal-overlay app-hidden">
+  <div class="modal-box">
+    <button id="modal-close" class="modal-close">×</button>
+
+    <div class="modal-game-info">
+      <img id="modal-game-cover" src="" alt="" class="modal-game-cover">
+      <h2 id="modal-game-name"></h2>
+    </div>
+
+    <p class="modal-label">Status</p>
+    <div class="modal-status-options">
+      <button class="filter-btn status-option" data-status="playing">🎮 Jogando</button>
+      <button class="filter-btn status-option" data-status="completed">🏆 Zerado</button>
+      <button class="filter-btn status-option" data-status="planned">📅 Planejado</button>
+      <button class="filter-btn status-option" data-status="dropped">🚫 Abandonado</button>
+    </div>
+
+    <div id="modal-platform-field" class="modal-platform-field app-hidden">
+      <p class="modal-label">Onde você está jogando?</p>
+      <select id="modal-platform-select">
+        <option value="Steam">Steam</option>
+        <option value="PlayStation">PlayStation</option>
+        <option value="Xbox">Xbox</option>
+        <option value="Epic Games">Epic Games</option>
+        <option value="Nintendo Switch">Nintendo Switch</option>
+        <option value="GOG">GOG</option>
+        <option value="Outro">Outro</option>
+      </select>
+    </div>
+
+    <button id="modal-confirm-btn" class="modal-confirm-btn">Adicionar</button>
+  </div>
+</div>
+
+<div id="details-modal" class="modal-overlay app-hidden">
+  <div class="modal-box details-modal-box">
+    <button id="details-close" class="modal-close">×</button>
+    <img id="details-cover" src="" alt="" class="modal-game-cover-big">
+    <h2 id="details-title"></h2>
+
+    <div class="details-field">
+      <label for="details-status-select">Status</label>
+      <select id="details-status-select">
+        <option value="playing">Jogando</option>
+        <option value="completed">Zerado</option>
+        <option value="planned">Planejado</option>
+        <option value="dropped">Abandonado</option>
+      </select>
+    </div>
+
+    <div class="details-field">
+      <label for="details-platform-select">Jogando em</label>
+      <select id="details-platform-select">
+        <option value="Steam">Steam</option>
+        <option value="PlayStation">PlayStation</option>
+        <option value="Xbox">Xbox</option>
+        <option value="Epic Games">Epic Games</option>
+        <option value="Nintendo Switch">Nintendo Switch</option>
+        <option value="GOG">GOG</option>
+        <option value="Outro">Outro</option>
+      </select>
+    </div>
+
+    <p class="details-row"><strong>Gênero:</strong> <span id="details-genre"></span></p>
+    <p class="details-row"><strong>Plataformas disponíveis:</strong> <span id="details-available"></span></p>
+
+    <p class="details-row"><strong>Lançamento:</strong> <span id="details-release"></span></p>
+
+  </div>
+</div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
